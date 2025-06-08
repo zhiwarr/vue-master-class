@@ -4,7 +4,7 @@ create table projects (
   created_at timestamp with time zone not null default now(),
   name text not null,
   status text not null default 'in-progress'::text,
-  collabrators text null default '[]'::text,
+  collaborators text null default '[]'::text,
   slug text null,
   constraint projects_pkey primary key (id),
   constraint projects_slug_key unique (slug)
