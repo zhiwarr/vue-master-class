@@ -1,0 +1,12 @@
+this process is used to connect our vuejs application to the remote project of the supabase service
+1. npm install supabase --save-dev
+2. going to supabase cli and local development page and define this scripts in package.json in the following order
+    "supabase:init": "supabase init",
+    "supabase:login": "supabase login",
+    "supabase:link": "supabase link --project-ref ngwpzagnnybugqjatqkx",
+    "db:migration:new": "supabase migration new schema_projects",
+    "db:reset": "supabase db reset --linked"
+
+after --project ref we need the project refrence that is on the project setting page
+
+then in the terminal run : npm run supabase:init ...etc to all
