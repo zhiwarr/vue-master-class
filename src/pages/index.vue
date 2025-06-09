@@ -7,11 +7,4 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { supabase } from '@/lib/supabaseClient'
-;(async () => {
-  const { data, error } = await supabase.from('projects').select()
-  console.log(data)
-  console.log(error)
-})()
-</script>
+<script setup lang="ts"></script>
