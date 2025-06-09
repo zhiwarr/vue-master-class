@@ -6,7 +6,7 @@ const route = useRoute()
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1>this is project number {{ route.params?.id }}</h1>
+        <h1>this is project number {{ route.params?.slug }}</h1>
       </div>
     </div>
   </div>
