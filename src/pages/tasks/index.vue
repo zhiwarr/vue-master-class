@@ -1,23 +1,10 @@
 <script setup lang="ts">
-import { supabase } from '@/lib/supabaseClient'
-import type { Tables } from '../../../database/types'
 import type { ColumnDef } from '@tanstack/vue-table'
 import { RouterLink } from 'vue-router'
 import { usePageStore } from '@/stores/page'
-import type { QueryData } from '@supabase/supabase-js'
+import { tasksWithProjectsQuery, type tasksWithProjects } from '@/utils/SupaQueries'
 
 usePageStore().pageData.title = 'Tasks'
-
-const tasksWithProjectsQuery = supabase.from('tasks').select(`
-  *,
-  projects(
-  id,
-  name,
-  slug
-  )
-  `)
-
-type tasksWithProjects = QueryData<typeof tasksWithProjectsQuery>
 
 const tasks = ref<tasksWithProjects | null>(null)
 const fetchTasks = async () => {
@@ -29,7 +16,7 @@ const fetchTasks = async () => {
 }
 
 await fetchTasks()
-// becouse the relation is one to many we only need the first index
+// its the array objects we need only the first one
 const columns: ColumnDef<tasksWithProjects[0]>[] = [
   {
     accessorKey: 'name',
