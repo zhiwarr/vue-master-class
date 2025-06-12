@@ -1,7 +1,6 @@
 drop table if exists tasks;
 
-drop type if exists current_status;
-create type current_status as enum ('in-progress', 'completed');
+
 create table 
   tasks (
     id bigint primary key generated always as identity not null,

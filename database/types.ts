@@ -11,28 +11,31 @@ export type Database = {
     Tables: {
       projects: {
         Row: {
-          collaborators: string | null
+          collaborators: string[]
           created_at: string
+          description: string | null
           id: number
           name: string
-          slug: string | null
-          status: string
+          slug: string
+          status: Database["public"]["Enums"]["current_status"]
         }
         Insert: {
-          collaborators?: string | null
+          collaborators?: string[]
           created_at?: string
-          id?: number
+          description?: string | null
+          id?: never
           name: string
-          slug?: string | null
-          status?: string
+          slug: string
+          status?: Database["public"]["Enums"]["current_status"]
         }
         Update: {
-          collaborators?: string | null
+          collaborators?: string[]
           created_at?: string
-          id?: number
+          description?: string | null
+          id?: never
           name?: string
-          slug?: string | null
-          status?: string
+          slug?: string
+          status?: Database["public"]["Enums"]["current_status"]
         }
         Relationships: []
       }
