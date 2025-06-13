@@ -1,7 +1,8 @@
+<script setup lang="ts">
+import { useErrorStore } from '@/stores/error'
+useErrorStore().setError({ error: 'who are you?', customCode: 404 })
+</script>
+
 <template>
-  <div>
-    <h1>404</h1>
-    <p>Page not found</p>
-    <router-link to="/">Go back to home</router-link>
-  </div>
+  <ErrorComponent />
 </template>
