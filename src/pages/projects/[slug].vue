@@ -13,7 +13,9 @@ watch(
 )
 
 const fetchProject = async () => {
-  const { data, error } = await ProjectQuery(route.params.slug)
+  const { data, error, status } = await ProjectQuery(route.params.slug)
+  if (error) useErrorStore().setError({ error: error, customCode: status })
+
   project.value = data
 }
 
