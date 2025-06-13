@@ -34,7 +34,7 @@ export const ProjectQuery = (slug: string) =>
 
 export type Project = QueryData<ReturnType<typeof ProjectQuery>>
 
-export const TaskQuery = (id: string) =>
+export const TaskQuery = (id: number) =>
   supabase
     .from('tasks')
     .select(
