@@ -45,3 +45,5 @@ projects(id,name,slug,status, description, collaborators)
     .eq('id', id)
     .single()
 export type Task = QueryData<ReturnType<typeof TaskQuery>>
+
+export const profileQuery = (id: string) => supabase.from('profiles').select().eq('id', id).single()
