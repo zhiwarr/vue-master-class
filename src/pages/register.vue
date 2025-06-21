@@ -1,4 +1,22 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import router from '@/router'
+import { register } from '@/utils/AuthQueries'
+
+const formData = reactive({
+  username: '',
+  first_name: '',
+  last_name: '',
+  email: '',
+  password: '',
+  confirm_password: '',
+})
+
+const signup = async () => {
+  const isRegistered = await register(formData)
+  if (isRegistered) router.push('/login')
+  else console.error('Registration failed')
+}
+</script>
 
 <template>
   <div
@@ -14,29 +32,60 @@
           <Button variant="outline" class="w-full"> Register with Google </Button>
           <Separator label="Or" />
         </div>
-        <form class="grid gap-4">
+        <form class="grid gap-4" @submit.prevent="signup">
           <div class="grid gap-2">
             <Label id="username" class="text-left">Username</Label>
-            <Input id="username" type="text" placeholder="johndoe19" required />
+            <Input
+              id="username"
+              v-model="formData.username"
+              type="text"
+              placeholder="johndoe19"
+              required
+            />
           </div>
           <div class="flex flex-col sm:flex-row justify-between gap-4">
             <div class="grid gap-2">
               <Label id="first_name" class="text-left">First Name</Label>
-              <Input id="first_name" type="text" placeholder="John" required />
+              <Input
+                id="first_name"
+                v-model="formData.first_name"
+                type="text"
+                placeholder="John"
+                required
+              />
             </div>
             <div class="grid gap-2">
               <Label id="last_name" class="text-left">Last Name</Label>
-              <Input id="last_name" type="text" placeholder="Doe" required />
+              <Input
+                id="last_name"
+                v-model="formData.last_name"
+                type="text"
+                placeholder="Doe"
+                required
+              />
             </div>
           </div>
           <div class="grid gap-2">
             <Label id="email" class="text-left">Email</Label>
-            <Input id="email" type="email" placeholder="johndoe19@example.com" required />
+            <Input
+              id="email"
+              type="email"
+              v-model="formData.email"
+              placeholder="johndoe19@example.com"
+              required
+            />
           </div>
 
           <div class="grid gap-2">
             <Label id="password" class="text-left">Password</Label>
-            <Input id="password" type="password" placeholder="*****" autocomplete required />
+            <Input
+              id="password"
+              type="password"
+              v-model="formData.password"
+              placeholder="*****"
+              autocomplete
+              required
+            />
           </div>
 
           <div class="grid gap-2">
@@ -47,6 +96,7 @@
               placeholder="*****"
               autocomplete
               required
+              v-model="formData.confirm_password"
             />
           </div>
           <Button type="submit" class="w-full"> Register </Button>
